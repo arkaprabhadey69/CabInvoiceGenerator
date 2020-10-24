@@ -1,0 +1,27 @@
+package com.bl.invoice;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class UserAccount {
+    public static Map<String, List<Rides>> userRides=new HashMap<>();
+
+    public static void addRide(String userID, List<Rides> rides) {
+        try {
+            if (userID == null || rides == null) {
+                throw new NullPointerException("Null value not allowed");
+            }
+            if (userRides.containsKey(userID)) {
+                for (Rides rides1 : rides) {
+                    userRides.get(userID).add(rides1);
+
+                }
+
+            } else
+                userRides.put(userID, rides);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+}
