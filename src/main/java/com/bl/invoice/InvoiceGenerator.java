@@ -1,5 +1,7 @@
 package com.bl.invoice;
 
+import java.util.List;
+
 public class InvoiceGenerator {
     public static int costPerKm = 10;
     public static int costPerMin = 1;
@@ -15,5 +17,14 @@ public class InvoiceGenerator {
             return minimumFare;
         }
         return fare;
+    }
+    public double calculateInvoice(List<Rides> rides){
+        int fare=0;
+        for(Rides ride:rides){
+            fare+=this.calculateFare(ride.distance,ride.time);
+
+        }
+        return fare;
+
     }
 }
