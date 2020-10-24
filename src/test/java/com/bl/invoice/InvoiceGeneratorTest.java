@@ -53,4 +53,27 @@ public class InvoiceGeneratorTest {
         Assert.assertEquals(enhancedInvoice1.avg,enhancedInvoice.avg,0);
         Assert.assertEquals(enhancedInvoice1.totalFare,enhancedInvoice.totalFare,0);
     }
+    @Test
+    public void givenMultipleRidesShouldReturnCorrectFareUsingUerID() {
+        InvoiceGenerator invoiceGenerator= new InvoiceGenerator();
+        List<Rides> rides= new ArrayList<>();
+        List<Rides> rides5= new ArrayList<>();
+        Rides rides1= new Rides(10,4);
+        Rides rides2= new Rides(5,3);
+        Rides rides3= new Rides(6,4);
+        Rides rides4= new Rides(11,3);
+        rides.add(rides1);
+        rides.add(rides2);
+        rides5.add(rides3);
+        rides5.add(rides4);
+        String userID="Ram";
+        String userID2="Shyam";
+        UserAccount.addRide(userID,rides);
+        UserAccount.addRide(userID2,rides5);
+        EnhancedInvoice enhancedInvoice=invoiceGenerator.getInvoiceSummary("Shyam");
+        EnhancedInvoice enhancedInvoice1= new EnhancedInvoice(177,2);
+        Assert.assertEquals(enhancedInvoice1.noOfRides,enhancedInvoice.noOfRides);
+        Assert.assertEquals(enhancedInvoice1.avg,enhancedInvoice.avg,0);
+        Assert.assertEquals(enhancedInvoice1.totalFare,enhancedInvoice.totalFare,0);
+    }
 }
