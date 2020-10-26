@@ -1,5 +1,7 @@
 package com.bl.invoice;
 
+import java.util.Objects;
+
 public class EnhancedInvoice {
     public double totalFare;
     public int noOfRides;
@@ -9,6 +11,10 @@ public class EnhancedInvoice {
         this.totalFare = totalFare;
         this.noOfRides = noOfRides;
         this.avg=this.totalFare/this.noOfRides;
+    }
+
+    public EnhancedInvoice() {
+
     }
 
     public double getAveragePrice(){
@@ -22,5 +28,20 @@ public class EnhancedInvoice {
                 ", noOfRides=" + noOfRides +
                 ", avg=" + avg +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EnhancedInvoice that = (EnhancedInvoice) o;
+        return Double.compare(that.totalFare, totalFare) == 0 &&
+                noOfRides == that.noOfRides &&
+                Double.compare(that.avg, avg) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(totalFare, noOfRides, avg);
     }
 }
