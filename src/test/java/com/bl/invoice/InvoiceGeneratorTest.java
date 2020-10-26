@@ -54,9 +54,7 @@ public class InvoiceGeneratorTest {
         rides.add(rides2);
         EnhancedInvoice enhancedInvoice = invoiceGenerator.calculateEnhancedInvoice(rides);
         EnhancedInvoice enhancedInvoice1 = new EnhancedInvoice(157, 2);
-        Assert.assertEquals(enhancedInvoice1.noOfRides, enhancedInvoice.noOfRides);
-        Assert.assertEquals(enhancedInvoice1.avg, enhancedInvoice.avg, 0);
-        Assert.assertEquals(enhancedInvoice1.totalFare, enhancedInvoice.totalFare, 0);
+        Assert.assertEquals(enhancedInvoice1,enhancedInvoice);
     }
 
     @Test
@@ -70,8 +68,6 @@ public class InvoiceGeneratorTest {
         UserAccount.addRide("Ram", rides);
         EnhancedInvoice enhancedInvoice = invoiceGenerator.getInvoiceSummaryPremium("Ram");
         EnhancedInvoice enhancedInvoice1 = new EnhancedInvoice(211, 2);
-        Assert.assertEquals(enhancedInvoice1.noOfRides, enhancedInvoice.noOfRides);
-        Assert.assertEquals(enhancedInvoice1.avg, enhancedInvoice.avg, 0);
-        Assert.assertEquals(enhancedInvoice1.totalFare, enhancedInvoice.totalFare, 0);
+        Assert.assertEquals(enhancedInvoice1,enhancedInvoice);
     }
 }
